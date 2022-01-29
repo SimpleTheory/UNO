@@ -86,19 +86,7 @@ INDEX:
     print('Open or restart program to play again.')
     sleep(10)
     exit(0)
-'''
-current_player=PLAYER_LIST[turn_counter]
-turn operation
-game state check
-'''
-
-
 
 
 if __name__ == '__main__':
     MAIN()
-
-
-#build main loop
-#go through everything make sure all ok
-#run program make sure all ok
