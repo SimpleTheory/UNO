@@ -146,9 +146,6 @@ def user_choice_black():
     # definitions
     first_let=[i[0] for i in color_list]
     def first_let_check(input_):
-        input_=set(input_)
-        input_=list(input_)
-        input_=input_[0]
         if input_ in first_let:
             index_ = first_let.index(input_)  #index fx returns first index value
             input_ = color_list[index_]
