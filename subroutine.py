@@ -7,6 +7,7 @@ def draw_card(DECK, player_, DISCARD, PLAYER_LIST):
     def deck_renew(DISCARD):
         # new discard is the last card played
         new_discard = DISCARD.pop(-1)
+        new_discard =[new_discard]
         deck = []
 
         # add cards from discard back into deck
