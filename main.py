@@ -87,6 +87,8 @@ INDEX:
         print(f'PLAYER {y} WINS!!!!!!!!!!!!!!!!!')
     else:
         print(f'PLAYER {username} WINS!!!!!!!!!!!!!!!!!')
+        
+    print('Please open or restart the program to play again.')
     sleep(10)
     exit(0)
 
