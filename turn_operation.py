@@ -171,7 +171,9 @@ def ai_play_card(fitted_possibilities, DECK, player_, DISCARD, PLAYER_LIST):
 def ai_ai(next_guy, possible):
 
     non_black_int_options = [i for i in possible if i.color != 'BLACK' and i.number is int]
-    possible_duplicates = [card_ for card_ in possible if possible.count(card_) > 1]
+    num_dup = [i.number for i in possible]
+    possible_duplicates = [card_ for index, card_ in enumerate(possible) if num_dup.count(num_dup[index]) > 1]
+
 
     if len(next_guy.hand) == 1:
         fitted = [card_ for card_ in possible if card_.number is str and '+' in card_.number]
