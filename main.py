@@ -31,10 +31,6 @@ class card:
 
         self.sort_value = ((color_list.index(color)+1)*100)+sort_val
 
-#DEFINITIONS
-#DECK, PLAYER_LIST, DISCARD = starting_deck.game_init()
-#turn_counter=0
-
 
 #MAIN
 def MAIN():
@@ -42,15 +38,16 @@ def MAIN():
     # DEFINITIONS
     DECK, PLAYER_LIST, DISCARD = starting_deck.game_init()
     turn_counter = 0
-    space='\n'*2
-    won= False
+    space ='\n'*2
+    won = False
+    username=input('Please type in your name:\n')
 
     print('''
 INDEX:
     CC = Change color
     Cards attributed with number then color (ie 4R or SKIP G)
-!LET'S PLAY UNO!
-    ''')
+    
+!LET'S PLAY UNO!''')
 
     # LOOP
     while won==False:
@@ -69,24 +66,41 @@ INDEX:
 
 
         # END PHASE
+        # fetching current player hand length
         x = [i for i in PLAYER_LIST if i.name == current_player.name]
         y = x[0]
-        if len(y.hand)==0:
+        # check if they won
+        if len(y.hand) == 0:
             won=True
 
-        if current_player.name=='USER':
+        # spacing for UI in console
+        if current_player.name == 'USER':
             print(space)
-            
+
+        # end phase game state check
         turn_counter = subroutine.game_state_check(current_player, PLAYER_LIST, skip)
 
-    #Post loop victory messages
+    # Post loop victory messages
     x = [i.name for i in PLAYER_LIST if len(i.hand) == 0]
     y = x[0]
-    print(f'PLAYER {y} WINS!!!!!!!!!!!!!!!!!')
-    print('Open or restart program to play again.')
+    if y != 'USER':
+        print(f'PLAYER {y} WINS!!!!!!!!!!!!!!!!!')
+    else:
+        print(f'')
+    print(f'PLAYER {username} WINS!!!!!!!!!!!!!!!!!')
     sleep(10)
     exit(0)
+
+    
+'''
+current_player=PLAYER_LIST[turn_counter]
+turn operation
+game state check
+'''
+
+
 
 
 if __name__ == '__main__':
     MAIN()
+
