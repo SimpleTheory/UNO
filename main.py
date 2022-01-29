@@ -74,9 +74,10 @@ INDEX:
         if len(y.hand)==0:
             won=True
 
-        turn_counter=subroutine.game_state_check(current_player, PLAYER_LIST, skip)
         if current_player.name=='USER':
             print(space)
+            
+        turn_counter = subroutine.game_state_check(current_player, PLAYER_LIST, skip)
 
     #Post loop victory messages
     x = [i.name for i in PLAYER_LIST if len(i.hand) == 0]
