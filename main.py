@@ -86,8 +86,7 @@ INDEX:
     if y != 'USER':
         print(f'PLAYER {y} WINS!!!!!!!!!!!!!!!!!')
     else:
-        print(f'')
-    print(f'PLAYER {username} WINS!!!!!!!!!!!!!!!!!')
+        print(f'PLAYER {username} WINS!!!!!!!!!!!!!!!!!')
     sleep(10)
     exit(0)
 
