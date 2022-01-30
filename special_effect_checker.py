@@ -15,6 +15,8 @@ def special_effect_check(card_to_play, DECK, player_, DISCARD, PLAYER_LIST):
             color_ = subroutine.ai_choice_black(player_)
         active_card.color = color_
         active_card.display = active_card.number + ' ' + active_card.color
+        active_card.colored_display = subroutine.colored(subroutine.RGB_dict[color_][0], subroutine.RGB_dict[color_][1], \
+        subroutine.RGB_dict[color_][2], active_card.display)
         return active_card
 
 
@@ -42,3 +44,4 @@ def special_effect_check(card_to_play, DECK, player_, DISCARD, PLAYER_LIST):
         skip=True
 
     return card_to_play, DECK, DISCARD, PLAYER_LIST, skip
+

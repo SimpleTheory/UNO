@@ -96,17 +96,32 @@ def user_turn(DECK, player_, DISCARD, PLAYER_LIST):
     # turn initiation
     DECK, player_, DISCARD, PLAYER_LIST = subroutine.player_turn_init(DECK, player_, DISCARD, PLAYER_LIST)
     turn_order_list= subroutine.turn_order_definer(player_, PLAYER_LIST)
+
+    # print ui
     print('\nThe following are the other players and their hands, in order of who\'s going next:')
     for element in turn_order_list:
             print(f'    {element.name} has {len(element.hand)}')
-    print(f'\nCard to play off of: {DISCARD[-1].display}')
+    print(f'\nCard to play off of: {DISCARD[-1].colored_display}')
     print(f'\nYour Hand: {len(player_.hand)}')
-    print([i.display for i in player_.hand])
+
+    # print colored lists of player hand
+    colored_display_list = [i.colored_display for i in player_.hand]
+    print('(', end='')
+    for i, v in enumerate(colored_display_list):
+        if i == len(colored_display_list) - 1:
+            print(v, end=')\n')
+        else:
+            print(v, end=', ')
 
     # print possible moves
     x = [move_validator_ai(card, DISCARD) for card in player_.hand]
-    possible_display=[i.display for i in x if i is not False]
-    print(f'(Possible moves: {possible_display})')
+    possible_display=[i.colored_display for i in x if i is not False]
+    print('\n(Possible moves: ( ', end='')
+    for i, v in enumerate(possible_display):
+        if i == len(possible_display) - 1:
+            print(v, end='))\n')
+        else:
+            print(v, end=', ')
 
     # player input and verification
     u_input= input_formatter(input('\nType in the card you wish to play (beware of typos):\n'))
@@ -138,7 +153,7 @@ def ai_play_card(fitted_possibilities, DECK, player_, DISCARD, PLAYER_LIST):
     index_= player_.hand.index(selection)
     card_to_play=player_.hand.pop(index_)
     card_to_play, DECK, DISCARD, PLAYER_LIST, skip = special_effect_check(card_to_play, DECK, player_, DISCARD, PLAYER_LIST)
-    print(f'{player_.name} played the card {card_to_play.display}.')
+    print(f'{player_.name} played the card {card_to_play.colored_display}.')
     DISCARD.append(card_to_play)
     return DECK, DISCARD, PLAYER_LIST, skip
 '''
@@ -173,7 +188,6 @@ def ai_ai(next_guy, possible):
     non_black_int_options = [i for i in possible if i.color != 'BLACK' and i.number is int]
     num_dup = [i.number for i in possible]
     possible_duplicates = [card_ for index, card_ in enumerate(possible) if num_dup.count(num_dup[index]) > 1]
-
 
     if len(next_guy.hand) == 1:
         fitted = [card_ for card_ in possible if card_.number is str and '+' in card_.number]

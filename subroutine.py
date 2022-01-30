@@ -18,6 +18,7 @@ def draw_card(DECK, player_, DISCARD, PLAYER_LIST):
             else:
                 card_.color = 'BLACK'
                 card_.display = card_.number + ' ' + card_.color[0]
+                card_.colored_display = colored(220,220,220, card_.display)
                 deck.append(card_)
 
         # shuffle deck; return the deck and the new discard pile
@@ -144,6 +145,7 @@ def ai_choice_black(player_):
 def user_choice_black():
     # definitions
     first_let=[i[0] for i in color_list]
+    # check to see if input is only one letter and if so to correct to the appropriate color
     def first_let_check(input_):
         if input_ in first_let:
             index_ = first_let.index(input_)  #index fx returns first index value
@@ -207,6 +209,12 @@ def refresh_player_list(player_, PLAYER_LIST):
         if elem.name==player_.name:
             PLAYER_LIST[i]=player_
     return PLAYER_LIST
+
+def colored(r, g, b, text):
+    return "\033[38;2;{};{};{}m{} \033[38;2;255;255;255m".format(r, g, b, text)
+
+
+RGB_dict = {'RED': [255, 0, 0], 'BLUE': [50, 150, 255], 'YELLOW': [250, 250, 0], 'GREEN': [20, 255, 20]}
 
 # USEFUL TIP
 # select multiple lines then click (ctrl+/) to comment them all out at the same time

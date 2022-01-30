@@ -1,5 +1,6 @@
 # DEFINITIONS
 from random import shuffle
+import subroutine
 class player:
     def __init__(self, name, hand):
         self.name = name
@@ -25,6 +26,13 @@ class card:
         color_list = ['RED', 'BLUE', 'YELLOW', 'GREEN', 'BLACK']
 
         self.sort_value = ((color_list.index(color)+1)*100)+sort_val
+
+        # colored display
+        if color != 'BLACK':
+            self.colored_display = subroutine.colored(subroutine.RGB_dict[color][0], subroutine.RGB_dict[color][1], \
+            subroutine.RGB_dict[color][2], self.display)
+        else:
+            self.colored_display = subroutine.colored(220, 220, 220, self.display)
 
 
 
@@ -65,7 +73,7 @@ def game_init():
     # gen players, deck, discard pile
     PLAYER_LIST = gen_players()
     DECK = deck_gen()
-    
+
     #DISCARD = [DECK.pop(0)]
     # if card black skip, else put card into play
     for i, v in enumerate(DECK):
@@ -81,8 +89,6 @@ def game_init():
             player_.hand.append(DECK.pop(0))
 
     return DECK, PLAYER_LIST, DISCARD
-
-
 
 
 

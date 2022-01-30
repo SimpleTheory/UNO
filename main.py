@@ -5,6 +5,7 @@ import subroutine
 from sys import exit
 from time import sleep
 #CLASS DEF
+'''
 class player:
     def __init__(self, name, hand):
         self.name = name
@@ -28,9 +29,14 @@ class card:
         else:
             sort_val=number
         color_list = ['RED', 'BLUE', 'YELLOW', 'GREEN', 'BLACK']
-
         self.sort_value = ((color_list.index(color)+1)*100)+sort_val
 
+    # colored display
+        if color != 'BLACK':
+            self.colored_display = subroutine.colored(subroutine.RGB_dict[color][0], subroutine.RGB_dict[color][1], subroutine.RGB_dict[color][2], self.display)
+        else:
+            self.colored_display = subroutine.colored(200,200,200, self.display)
+'''
 
 #MAIN
 def MAIN():
@@ -52,31 +58,29 @@ INDEX:
     # LOOP
     while won==False:
 
-        # UPKEEP
+    # UPKEEP
         current_player = PLAYER_LIST[turn_counter]
         if current_player.name=='USER':
             print(space)
 
 
-        # MAIN PHASE
+    # MAIN PHASE
         if current_player.name=='USER':
             DECK, DISCARD, PLAYER_LIST, skip = turn_operation.user_turn(DECK, current_player, DISCARD, PLAYER_LIST)
         else:
             DECK, DISCARD, PLAYER_LIST, skip = turn_operation.ai_turn(DECK, current_player, DISCARD, PLAYER_LIST)
 
 
-        # END PHASE
+    # END PHASE
         # fetching current player hand length
         x = [i for i in PLAYER_LIST if i.name == current_player.name]
         y = x[0]
         # check if they won
         if len(y.hand) == 0:
             won=True
-
         # spacing for UI in console
         if current_player.name == 'USER':
             print(space)
-
         # end phase game state check
         turn_counter = subroutine.game_state_check(current_player, PLAYER_LIST, skip)
 
@@ -87,12 +91,12 @@ INDEX:
         print(f'PLAYER {y} WINS!!!!!!!!!!!!!!!!!')
     else:
         print(f'PLAYER {username} WINS!!!!!!!!!!!!!!!!!')
-        
+
     print('Please open or restart the program to play again.')
+
     sleep(10)
     exit(0)
 
-    
 '''
 current_player=PLAYER_LIST[turn_counter]
 turn operation
