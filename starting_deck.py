@@ -65,7 +65,15 @@ def game_init():
     # gen players, deck, discard pile
     PLAYER_LIST = gen_players()
     DECK = deck_gen()
-    DISCARD = [DECK.pop(0)]
+    
+    #DISCARD = [DECK.pop(0)]
+    # if card black skip, else put card into play
+    for i, v in enumerate(DECK):
+        if v.color == 'BLACK':
+            continue
+        else:
+            DISCARD = [DECK.pop(i)]
+            break
 
     # for every player draw 7 cards
     for player_ in PLAYER_LIST:
